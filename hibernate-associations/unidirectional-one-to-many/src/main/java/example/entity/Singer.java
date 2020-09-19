@@ -18,7 +18,7 @@ import java.util.List;
 
 @Entity @Getter @EqualsAndHashCode(of = "id") public class Singer implements Serializable {
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@SuppressWarnings("FieldMayBeFinal") @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	//    @OrderColumn(name = "songs_order") // 2. Using @OrderColumn
 	@JoinColumn(name = "singer_id") // 3. Using @JoinColumn
 	private List<Song> songs = new ArrayList<>();
