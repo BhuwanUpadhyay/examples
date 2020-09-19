@@ -5,14 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity @Getter @EqualsAndHashCode(of = "id") public class Song implements Serializable {
 
@@ -20,5 +19,5 @@ import java.util.List;
 	private @Setter String title;
 	private @Setter String genre;
 
-	private @Setter @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "singer_id") List<Singer> singers;
+	private @Setter @ManyToMany(mappedBy = "songs") Set<Singer> singers = new HashSet<>();
 }

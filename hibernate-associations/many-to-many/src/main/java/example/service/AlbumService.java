@@ -31,7 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 	@Transactional public void deleteFirstSongOfSinger() {
 		Singer singer = singerRepository.findByName(NAME);
-		Song song = singer.getSongs().get(0);
+		Song song = singer.getSongs().stream().findFirst().get();
 		singer.removeSong(song);
 	}
 

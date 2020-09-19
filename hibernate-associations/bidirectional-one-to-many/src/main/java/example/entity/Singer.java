@@ -18,7 +18,7 @@ import java.util.List;
 @Entity @Getter @EqualsAndHashCode(of = "id") public class Singer implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "singer", orphanRemoval = true)
-	private final List<Song> songs = new ArrayList<>();
+	private List<Song> songs = new ArrayList<>();
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 	private @Setter Integer age;
 	private @Setter String country;
