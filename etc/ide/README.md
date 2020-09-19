@@ -1,6 +1,6 @@
 # Code Formatting Settings
 
-This directory contains `eclipse-formatting.xml` and `springdata.importorder` settings files to be used with Eclipse and IntelliJ.
+This directory contains `eclipse-formatting.xml` and `code.importorder` settings files to be used with Eclipse and IntelliJ.
 
 ## Eclipse Setup
 
