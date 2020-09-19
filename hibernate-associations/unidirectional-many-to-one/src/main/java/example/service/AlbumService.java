@@ -3,6 +3,7 @@ package example.service;
 import example.entity.Singer;
 import example.entity.Song;
 import example.repository.SingerRepository;
+import example.repository.SongRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,8 +14,9 @@ public class AlbumService {
 
     public static final String NAME = "Bandana Poudyal";
     private final SingerRepository singerRepository;
+    private final SongRepository songRepository;
 
-    public void addSongsAndItsSinger() {
+    private void createSinger() {
 
         Singer singer = new Singer();
 
@@ -22,25 +24,32 @@ public class AlbumService {
         singer.setAge(26);
         singer.setCountry("Nepal");
 
+
+        singerRepository.save(singer);
+    }
+
+    public void addSongsAndItsSinger() {
+        this.createSinger();
+
+        Singer singer = singerRepository.findByName(NAME);
+
         Song song = new Song();
         song.setGenre("Romantic");
         song.setTitle("Lal Isqh");
-
-        singer.addSong(song);
-
-        singerRepository.save(singer);
+        song.setSinger(singer);
+        songRepository.save(song);
     }
 
     @Transactional
     public void deleteFirstSongOfSinger() {
         Singer singer = singerRepository.findByName(NAME);
-        Song song = singer.getSongs().get(0);
-        singer.removeSong(song);
+        Song song = songRepository.findAllBySinger(singer).get(0);
+        songRepository.delete(song);
     }
 
     @Transactional
     public void deleteAllSongsOfSinger() {
         Singer singer = singerRepository.findByName(NAME);
-        singer.removeSongs();
+        songRepository.deleteAllBySinger(singer);
     }
 }

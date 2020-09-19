@@ -24,17 +24,17 @@ public class Application {
         mark();
         log.info("Create singer with songs");
         mark();
-        albumService.create();
+        albumService.addSongsAndItsSinger();
         mark();
 
         log.info("Delete a song of a singer");
         mark();
-        albumService.deleteSong();
+        albumService.deleteFirstSongOfSinger();
         mark();
 
         log.info("Delete all songs of a singer");
         mark();
-        albumService.deleteAllSongs();
+        albumService.deleteAllSongsOfSinger();
         mark();
 
     }

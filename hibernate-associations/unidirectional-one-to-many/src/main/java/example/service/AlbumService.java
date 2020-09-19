@@ -17,7 +17,7 @@ public class AlbumService {
     public static final String NAME = "Bandana Poudyal";
     private final SingerRepository singerRepository;
 
-    public void create() {
+    public void addSongsAndItsSinger() {
 
         Singer singer = new Singer();
 
@@ -40,14 +40,14 @@ public class AlbumService {
     }
 
     @Transactional
-    public void deleteSong() {
+    public void deleteFirstSongOfSinger() {
         Singer singer = singerRepository.findByName(NAME);
         Song song = singer.getSongs().get(0);
         singer.removeSong(song);
     }
 
     @Transactional
-    public void deleteAllSongs() {
+    public void deleteAllSongsOfSinger() {
         Singer singer = singerRepository.findByName(NAME);
         singer.removeSongs();
     }
