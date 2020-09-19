@@ -10,14 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 
-@Entity
-@Getter
-@EqualsAndHashCode(of = "id")
-public class Song implements Serializable {
+@Entity @Getter @EqualsAndHashCode(of = "id") public class Song implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private @Setter String title;
-    private @Setter String genre;
+	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
+	private @Setter String title;
+	private @Setter String genre;
 }
