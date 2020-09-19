@@ -16,6 +16,7 @@
         <module>bidirectional-one-to-many</module>
         <module>unidirectional-one-to-many</module>
         <module>unidirectional-many-to-one</module>
+        <module>many-to-many</module>
     </modules>
 
 
