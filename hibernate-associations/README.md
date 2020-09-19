@@ -10,3 +10,5 @@ Singer - bidirectional `@OneToMany` - Song:
 - `singer_id` column maps `@OneToMany` relationship  via a foreign key that references the primary key of the singer table.
 - song cannot exist without a singer, 
 therefore, the singer is the parent side (@OneToMany) while     
+
+- 

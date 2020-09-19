@@ -21,7 +21,7 @@ import java.util.List;
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	//    @OrderColumn(name = "songs_order") // 2. Using @OrderColumn
 	@JoinColumn(name = "singer_id") // 3. Using @JoinColumn
-	private final List<Song> songs = new ArrayList<>();
+	private List<Song> songs = new ArrayList<>();
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 	private @Setter Integer age;
 	private @Setter String country;
