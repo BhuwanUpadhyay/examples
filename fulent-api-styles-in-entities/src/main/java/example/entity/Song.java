@@ -1,10 +1,6 @@
 package example.entity;
 
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,13 +8,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import java.io.Serializable;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity @Getter @EqualsAndHashCode(of = "id") public class Song implements Serializable {
+@Entity
+@Getter
+@EqualsAndHashCode(of = "id")
+public class Song implements Serializable {
 
-	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
-	private @Setter String title;
-	private @Setter String genre;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	private @Setter(AccessLevel.PACKAGE) @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "singer_id") Singer singer;
+  @Setter
+  private String title;
+
+  @Setter
+  private String genre;
+
+  @Setter(AccessLevel.PACKAGE)
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "singer_id")
+  private Singer singer;
 }
