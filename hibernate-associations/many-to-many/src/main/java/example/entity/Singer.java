@@ -21,6 +21,9 @@ import lombok.Setter;
 @EqualsAndHashCode(of = "id")
 public class Singer implements Serializable {
 
+  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+  @JoinTable(name = "singer_song", joinColumns = @JoinColumn(name = "singer_id"), inverseJoinColumns = @JoinColumn(name = "song_id"))
+  private final Set<Song> songs = new HashSet<>();
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -30,9 +33,6 @@ public class Singer implements Serializable {
   private String country;
   @Setter
   private String name;
-  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-  @JoinTable(name = "singer_song", joinColumns = @JoinColumn(name = "singer_id"), inverseJoinColumns = @JoinColumn(name = "song_id"))
-  private final Set<Song> songs = new HashSet<>();
 
   public void addSong(Song song) {
     this.songs.add(song);

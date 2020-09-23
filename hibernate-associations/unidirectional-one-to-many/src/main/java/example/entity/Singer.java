@@ -20,6 +20,10 @@ import lombok.Setter;
 @EqualsAndHashCode(of = "id")
 public class Singer implements Serializable {
 
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  //    @OrderColumn(name = "songs_order") // 2. Using @OrderColumn
+  @JoinColumn(name = "singer_id") // 3. Using @JoinColumn
+  private final List<Song> songs = new ArrayList<>();
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -29,10 +33,6 @@ public class Singer implements Serializable {
   private String country;
   @Setter
   private String name;
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  //    @OrderColumn(name = "songs_order") // 2. Using @OrderColumn
-  @JoinColumn(name = "singer_id") // 3. Using @JoinColumn
-  private final List<Song> songs = new ArrayList<>();
 
   public void addSong(Song song) {
     this.songs.add(song);
