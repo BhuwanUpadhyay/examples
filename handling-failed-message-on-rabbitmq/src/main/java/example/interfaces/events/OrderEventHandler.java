@@ -23,7 +23,7 @@ public class OrderEventHandler {
     this.objectMapper = objectMapper;
   }
 
-  @StreamListener(target = OrderEventSource.IN_CHANNEL)
+  @StreamListener(target = OrderEventSource.ORDERS)
   public void receiveEvent(@Payload String payload, @Headers Map<String, Object> headers) {
     OrderCreated command;
     try {

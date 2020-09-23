@@ -3,3 +3,4 @@
 
 ## Just References
 - https://ibm.github.io/spm-kubernetes/08-runtime/failed_jms_messages
+- https://jack-vanlightly.com/blog/2017/6/11/improving-reliability-and-incident-response-via-a-message-lifecycle

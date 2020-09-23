@@ -12,6 +12,7 @@
   <modules>
     <module>hibernate-associations</module>
     <module>handling-failed-message-on-rabbitmq</module>
+    <module>event-driven-architecture-case-study</module>
   </modules>
 
   <properties>

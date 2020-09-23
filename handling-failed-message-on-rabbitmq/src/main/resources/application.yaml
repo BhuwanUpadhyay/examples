@@ -9,11 +9,8 @@ spring:
   cloud:
     stream:
       bindings:
-        outEvents: # [MessageChannel]
-          destination: osEvents
-          group: examples
-        inEvents: # [SubscribableChannel]
-          destination: osEvents
+        orders: # [SubscribableChannel]
+          destination: orders
           group: examples
 CatalogService:
   ribbon:
