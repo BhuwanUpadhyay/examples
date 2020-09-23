@@ -1,6 +1,8 @@
 package example.domain;
 
 import java.io.Serializable;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
+@Access(AccessType.FIELD)
 public class OrderLine implements Serializable {
 
   @Id
@@ -37,5 +40,21 @@ public class OrderLine implements Serializable {
 
   public void setItemOrder(ItemOrder itemOrder) {
     this.itemOrder = itemOrder;
+  }
+
+  public String getItemId() {
+    return itemId;
+  }
+
+  public Integer getQuantity() {
+    return quantity;
+  }
+
+  public Price getPrice() {
+    return price;
+  }
+
+  public ItemOrder getItemOrder() {
+    return itemOrder;
   }
 }

@@ -3,6 +3,8 @@ package example.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
+@Access(AccessType.FIELD)
 public class ItemOrder implements Serializable {
 
   @Id
@@ -39,5 +42,17 @@ public class ItemOrder implements Serializable {
       orderLine.setItemOrder(this);
     }
     this.orderLines.addAll(orderLines);
+  }
+
+  public String getOrderId() {
+    return orderId;
+  }
+
+  public String getCustomerId() {
+    return customerId;
+  }
+
+  public List<OrderLine> getOrderLines() {
+    return orderLines;
   }
 }
