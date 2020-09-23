@@ -6,6 +6,15 @@ spring:
     password: bitnami
     host: localhost
     port: 5672
+  cloud:
+    stream:
+      bindings:
+        outEvents: # [MessageChannel]
+          destination: osEvents
+          group: examples
+        inEvents: # [SubscribableChannel]
+          destination: osEvents
+          group: examples
 CatalogService:
-    ribbon:
-      listOfServers: http://localhost:8000,http://localhost:8001
+  ribbon:
+    listOfServers: http://localhost:8000,http://localhost:8001

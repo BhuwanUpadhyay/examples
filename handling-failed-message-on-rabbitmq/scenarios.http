@@ -1,0 +1,17 @@
+###
+POST http://localhost:15672/api/exchanges/%2F/osEvents/publish
+Authorization: Basic user bitnami
+Content-Type: application/json
+
+{
+  "properties": {
+    "delivery_mode": 2
+  },
+  "routing_key": "",
+  "payload": "{}",
+  "payload_encoding": "string"
+}
+
+###
+
+

@@ -7,11 +7,12 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface OrderEventSource {
 
-  String CHANNEL = "osEvents";
+  String OUT_CHANNEL = "outEvents";
+  String IN_CHANNEL = "inEvents";
 
-  @Output(CHANNEL)
-  MessageChannel eventsOut();
+  @Output(OUT_CHANNEL)
+  MessageChannel outEvents();
 
-  @Input(CHANNEL)
-  SubscribableChannel eventsIn();
+  @Input(IN_CHANNEL)
+  SubscribableChannel inEvents();
 }
