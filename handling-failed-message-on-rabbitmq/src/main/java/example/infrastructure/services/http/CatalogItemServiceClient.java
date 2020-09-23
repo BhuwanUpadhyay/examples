@@ -1,22 +1,18 @@
 package example.infrastructure.services.http;
 
+import java.math.BigDecimal;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+@FeignClient(name = "CatalogService")
+public interface CatalogItemServiceClient {
 
-@FeignClient("orders")
-public interface OrderServiceClient {
+  @RequestMapping(method = RequestMethod.GET, value = "/catalog-items/{itemId}")
+  ItemInfoResource getItemInfo(@PathVariable("itemId") String itemId);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/orders/{orderId}")
-    OrderInfoResource getOrderInfo(@PathVariable("orderId") String orderId);
+  record ItemInfoResource(String itemId, BigDecimal price, String currency) {
 
-    @RequestMapping(method = RequestMethod.POST, value = "/stores/{orderId}", consumes = APPLICATION_JSON_VALUE)
-    OrderInfoResource updateOrder(@PathVariable("orderId") String storeId, OrderInfoResource orderInfo);
-
-    record OrderInfoResource(String customerId) {
-
-    }
+  }
 }

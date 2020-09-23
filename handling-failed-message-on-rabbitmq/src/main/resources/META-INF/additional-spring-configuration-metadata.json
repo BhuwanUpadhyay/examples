@@ -1,1 +1,9 @@
-{ "properties": [ ] }
+{
+  "properties": [
+    {
+      "name": "CatalogService.ribbon.listOfServers",
+      "type": "java.lang.String",
+      "description": "List Of Servers for catalog service."
+    }
+  ]
+}

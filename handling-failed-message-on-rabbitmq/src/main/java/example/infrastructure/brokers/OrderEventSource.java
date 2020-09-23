@@ -1,12 +1,17 @@
 package example.infrastructure.brokers;
 
-public interface CartEventSource {
+import org.springframework.cloud.stream.annotation.Input;
+import org.springframework.cloud.stream.annotation.Output;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.SubscribableChannel;
 
-    String CHANNEL = "osEvents";
+public interface OrderEventSource {
 
-    @Output(CHANNEL)
-    MessageChannel eventsOut();
+  String CHANNEL = "osEvents";
 
-    @Input(CHANNEL)
-    SubscribableChannel eventsIn();
+  @Output(CHANNEL)
+  MessageChannel eventsOut();
+
+  @Input(CHANNEL)
+  SubscribableChannel eventsIn();
 }

@@ -11,6 +11,7 @@
 
   <modules>
     <module>hibernate-associations</module>
+    <module>handling-failed-message-on-rabbitmq</module>
   </modules>
 
   <properties>

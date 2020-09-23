@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: item-order-service
+  rabbitmq:
+    username: user
+    password: bitnami
+    host: localhost
+    port: 5672
+CatalogService:
+    ribbon:
+      listOfServers: http://localhost:8000,http://localhost:8001
