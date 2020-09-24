@@ -10,8 +10,14 @@ spring:
     stream:
       bindings:
         orders: # [SubscribableChannel]
-          destination: orders
-          group: examples
+          destination: osEvents
+          group: order-service
+        payments: # [SubscribableChannel]
+          destination: osEvents
+          group: payment-service
+        failures: # [MessageChannel]
+          destination: osFailedEvents
+          group: order-service
 CatalogService:
   ribbon:
     listOfServers: http://localhost:8000,http://localhost:8001

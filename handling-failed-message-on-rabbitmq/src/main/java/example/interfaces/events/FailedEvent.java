@@ -1,4 +1,4 @@
 package example.interfaces.events;
 
-public record FailedEvent() {
+public record FailedEvent<T> (T payload, String reason) {
 }
