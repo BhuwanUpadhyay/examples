@@ -1,39 +1,24 @@
 package example.application.commandservices;
 
-import example.application.outboundservices.ExternalCatalogItemService;
 import example.domain.ItemOrder;
-import example.domain.OrderLine;
-import example.domain.Price;
 import example.infrastructure.jpa.ItemOrderRepository;
-import example.interfaces.events.OrderCreated;
-import example.interfaces.events.OrderItem;
-import java.util.List;
-import java.util.stream.Collectors;
+import example.interfaces.events.OrderBilled;
+import example.interfaces.events.OrderShipped;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FullfillmentCommandService {
+public class ShipmentCommandService {
 
   private final ItemOrderRepository itemOrderRepository;
-  private final ExternalCatalogItemService externalCatalogItemService;
 
-  public FullfillmentCommandService(
-      ItemOrderRepository itemOrderRepository,
-      ExternalCatalogItemService externalCatalogItemService) {
+  public ShipmentCommandService(
+      ItemOrderRepository itemOrderRepository) {
     this.itemOrderRepository = itemOrderRepository;
-    this.externalCatalogItemService = externalCatalogItemService;
   }
 
-  public void execute(OrderCreated command) {
-    ItemOrder itemOrder = new ItemOrder(command.orderId(), command.customerId());
-    List<OrderLine> orderLines =
-        command.items().stream().map(this::createOrderLine).collect(Collectors.toList());
-    itemOrder.addOrderLines(orderLines);
+  public void execute(OrderShipped command) {
+    ItemOrder itemOrder = itemOrderRepository.findByOrderId(command.orderId());
+    itemOrder.shipItems(command.address());
     this.itemOrderRepository.save(itemOrder);
-  }
-
-  private OrderLine createOrderLine(OrderItem orderItem) {
-    Price price = externalCatalogItemService.getItemPrice(orderItem.itemId());
-    return new OrderLine(orderItem.itemId(), orderItem.quantity(), price);
   }
 }

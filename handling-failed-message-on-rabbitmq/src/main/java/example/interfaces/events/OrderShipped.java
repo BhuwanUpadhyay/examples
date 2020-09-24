@@ -2,7 +2,7 @@ package example.interfaces.events;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record OrderBilled(
+public record OrderShipped(
     @JsonProperty("orderId") String orderId,
-    @JsonProperty("price") String price) {
+    @JsonProperty("address") String address) {
 }

@@ -1,5 +1,5 @@
 ###
-POST http://localhost:15672/api/exchanges/%2F/osEvents/publish
+POST http://localhost:15672/api/exchanges/%2F/order.created/publish
 Authorization: Basic user bitnami
 Content-Type: application/json
 

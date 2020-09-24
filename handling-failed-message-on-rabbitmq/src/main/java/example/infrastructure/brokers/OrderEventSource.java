@@ -7,16 +7,23 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface OrderEventSource {
 
-  String ORDERS = "orders";
-  String PAYMENTS = "payments";
-  String FAILURES = "failures";
+  String ORDER_CREATED = "orderCreated";
+  String ORDER_BILLED = "orderBilled";
+  String ORDER_SHIPPED = "orderShipped";
+  String ORDER_FAILED = "orderFailed";
 
-  @Output(FAILURES)
-  MessageChannel failures();
-  
-  @Input(ORDERS)
-  SubscribableChannel orders();
+  @Input(ORDER_FAILED)
+  SubscribableChannel orderFailed();
 
-  @Input(PAYMENTS)
-  SubscribableChannel payments();
+  @Output(ORDER_FAILED)
+  MessageChannel failed();
+
+  @Input(ORDER_CREATED)
+  SubscribableChannel orderCreated();
+
+  @Input(ORDER_SHIPPED)
+  SubscribableChannel orderShipped();
+
+  @Input(ORDER_BILLED)
+  SubscribableChannel orderBilled();
 }

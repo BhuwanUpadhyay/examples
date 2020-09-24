@@ -9,15 +9,20 @@ spring:
   cloud:
     stream:
       bindings:
-        orders: # [SubscribableChannel]
-          destination: osEvents
+        orderCreated: # [SubscribableChannel]
+          destination: order.created
           group: order-service
-        payments: # [SubscribableChannel]
-          destination: osEvents
-          group: payment-service
-        failures: # [MessageChannel]
-          destination: osFailedEvents
+        orderBilled: # [SubscribableChannel]
+          destination: order.billed
           group: order-service
+        orderShipped: # [SubscribableChannel]
+          destination: order.shipped
+          group: order-service
+        orderFailed: # [SubscribableChannel]
+          destination: order.failed
+          group: order-service
+        failed: # [MessageChannel]
+          destination: order.failed
 CatalogService:
   ribbon:
     listOfServers: http://localhost:8000,http://localhost:8001
