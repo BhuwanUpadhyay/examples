@@ -25,7 +25,6 @@ public class OrderEventHandler {
   private final CreateOrderCommandService createOrderCommandService;
   private final BillingCommandService billingCommandService;
   private final ShipmentCommandService shipmentCommandService;
-  private final ObjectMapper objectMapper;
   private final OrderEventSource eventSource;
 
   private final Logger log = LoggerFactory.getLogger(OrderEventHandler.class);
@@ -34,11 +33,10 @@ public class OrderEventHandler {
       CreateOrderCommandService createOrderCommandService,
       BillingCommandService billingCommandService,
       ShipmentCommandService shipmentCommandService,
-      ObjectMapper objectMapper, OrderEventSource eventSource) {
+      OrderEventSource eventSource) {
     this.createOrderCommandService = createOrderCommandService;
     this.billingCommandService = billingCommandService;
     this.shipmentCommandService = shipmentCommandService;
-    this.objectMapper = objectMapper;
     this.eventSource = eventSource;
   }
 
@@ -53,7 +51,8 @@ public class OrderEventHandler {
   }
 
   @StreamListener(target = OrderEventSource.ORDER_SHIPPED)
-  public void receiveShipments(@Payload OrderShipped command, @Headers Map<String, Object> headers) {
+  public void receiveShipments(@Payload OrderShipped command,
+      @Headers Map<String, Object> headers) {
     shipmentCommandService.execute(command);
   }
 
@@ -71,7 +70,7 @@ public class OrderEventHandler {
   public void onShippedError(ErrorMessage errorMessage) {
     this.handleErrors(errorMessage);
   }
-  
+
   private void handleErrors(ErrorMessage errorMessage) {
     // Getting exception objects
     Throwable throwable = errorMessage.getPayload();

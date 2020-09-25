@@ -14,21 +14,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class FailedEventHandler {
 
-  private final ObjectMapper objectMapper;
   private final Logger log = LoggerFactory.getLogger(FailedEventHandler.class);
 
-  public FailedEventHandler(ObjectMapper objectMapper) {
-    this.objectMapper = objectMapper;
-  }
-
   @StreamListener(target = OrderEventSource.ORDER_FAILED)
-  public void receiveFailures(@Payload String payload, @Headers Map<String, Object> headers) {
-    log.info("Received failures: {}", payload);
-    FailedEvent command;
-    try {
-      command = this.objectMapper.readValue(payload, FailedEvent.class);
-    } catch (JsonProcessingException e) {
-      log.debug("Unable to parse!", e);
-    }
+  public void receiveFailures(@Payload FailedEvent command, @Headers Map<String, Object> headers) {
+    log.info("Received failures: {}", command);
   }
 }
