@@ -43,35 +43,17 @@ public class OrderEventHandler {
   }
 
   @StreamListener(target = OrderEventSource.ORDER_CREATED)
-  public void receiveOrders(@Payload String payload, @Headers Map<String, Object> headers) {
-    OrderCreated command;
-    try {
-      command = this.objectMapper.readValue(payload, OrderCreated.class);
-    } catch (JsonProcessingException e) {
-      throw new FailedEventException("", e);
-    }
+  public void receiveOrders(@Payload OrderCreated command, @Headers Map<String, Object> headers) {
     createOrderCommandService.execute(command);
   }
 
   @StreamListener(target = OrderEventSource.ORDER_BILLED)
-  public void receiveBills(@Payload String payload, @Headers Map<String, Object> headers) {
-    OrderBilled command;
-    try {
-      command = this.objectMapper.readValue(payload, OrderBilled.class);
-    } catch (JsonProcessingException e) {
-      throw new FailedEventException("", e);
-    }
+  public void receiveBills(@Payload OrderBilled command, @Headers Map<String, Object> headers) {
     billingCommandService.execute(command);
   }
 
   @StreamListener(target = OrderEventSource.ORDER_SHIPPED)
-  public void receiveShipments(@Payload String payload, @Headers Map<String, Object> headers) {
-    OrderShipped command;
-    try {
-      command = this.objectMapper.readValue(payload, OrderShipped.class);
-    } catch (JsonProcessingException e) {
-      throw new FailedEventException("", e);
-    }
+  public void receiveShipments(@Payload OrderShipped command, @Headers Map<String, Object> headers) {
     shipmentCommandService.execute(command);
   }
 
