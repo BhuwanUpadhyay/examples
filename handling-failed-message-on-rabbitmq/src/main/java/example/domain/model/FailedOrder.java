@@ -20,6 +20,7 @@ public class FailedOrder implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  private String onPhase;
   private String messageId;
   private String messageQueue;
   private String messageExchange;
@@ -35,6 +36,7 @@ public class FailedOrder implements Serializable {
   }
 
   public FailedOrder(FailedEvent event) {
+    this.onPhase = event.onPhase();
     this.messageExchange = event.exchange();
     this.messageQueue = event.queue();
     this.messageFailureReason = event.reason();
@@ -70,6 +72,10 @@ public class FailedOrder implements Serializable {
 
   public Status getStatus() {
     return status;
+  }
+
+  public String getOnPhase() {
+    return onPhase;
   }
 
   public enum Status {

@@ -60,20 +60,20 @@ public class OrderEventHandler {
 
   @ServiceActivator(inputChannel = "order.created.order-service.errors")
   public void onCreatedError(ErrorMessage errorMessage) {
-    this.handleErrors(errorMessage);
+    this.handleErrors(errorMessage, "CREATE");
   }
 
   @ServiceActivator(inputChannel = "order.billed.order-service.errors")
   public void onBilledError(ErrorMessage errorMessage) {
-    this.handleErrors(errorMessage);
+    this.handleErrors(errorMessage, "BILLING");
   }
 
   @ServiceActivator(inputChannel = "order.shipped.order-service.errors")
   public void onShippedError(ErrorMessage errorMessage) {
-    this.handleErrors(errorMessage);
+    this.handleErrors(errorMessage, "SHIPPING");
   }
 
-  private void handleErrors(ErrorMessage errorMessage) {
+  private void handleErrors(ErrorMessage errorMessage, String onPhase) {
     // Getting exception objects
     Throwable throwable = errorMessage.getPayload();
 
@@ -85,6 +85,7 @@ public class OrderEventHandler {
     MessageHeaders headers = originalMessage.getHeaders();
     String payload = new String((byte[]) originalMessage.getPayload());
     FailedEvent failedEvent = new FailedEvent(
+        onPhase,
         payload,
         throwable.getMessage(),
         headers.getId(),
