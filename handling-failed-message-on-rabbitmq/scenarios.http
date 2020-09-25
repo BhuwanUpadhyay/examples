@@ -1,4 +1,4 @@
-###
+### Create Order
 POST http://localhost:15672/api/exchanges/%2F/order.created/publish
 Authorization: Basic user bitnami
 Content-Type: application/json
@@ -12,6 +12,6 @@ Content-Type: application/json
   "payload_encoding": "string"
 }
 
-###
-
+### Get Failed Orders
+http://localhost:8080/orders/failed
 

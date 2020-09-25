@@ -41,7 +41,7 @@ public class FailedOrder implements Serializable {
     this.messageId = event.id().toString();
     this.messagePayload = event.payload();
     this.messageTimestamp = event.timestamp();
-    this.status = Status.OCCURRED;
+    this.status = Status.INITIAL;
   }
 
   public String getMessageId() {
@@ -73,6 +73,6 @@ public class FailedOrder implements Serializable {
   }
 
   public enum Status {
-    OCCURRED,
+    INITIAL, RETURNED, ARCHIVED, DISCARDED
   }
 }
