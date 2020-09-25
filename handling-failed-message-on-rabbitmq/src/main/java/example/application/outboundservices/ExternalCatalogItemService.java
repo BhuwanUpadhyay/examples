@@ -1,6 +1,6 @@
 package example.application.outboundservices;
 
-import example.domain.Price;
+import example.domain.model.Price;
 import example.infrastructure.services.http.CatalogItemServiceClient;
 import java.util.Optional;
 import org.springframework.stereotype.Service;

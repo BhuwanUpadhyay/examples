@@ -1,4 +1,4 @@
-package example.domain;
+package example.domain.model;
 
 import java.math.BigDecimal;
 import javax.persistence.Access;

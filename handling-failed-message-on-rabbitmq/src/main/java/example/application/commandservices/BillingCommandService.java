@@ -1,8 +1,8 @@
 package example.application.commandservices;
 
-import example.domain.ItemOrder;
+import example.domain.model.ItemOrder;
 import example.infrastructure.jpa.ItemOrderRepository;
-import example.interfaces.events.OrderBilled;
+import example.domain.commands.OrderBilled;
 import org.springframework.stereotype.Service;
 
 @Service

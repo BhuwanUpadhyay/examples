@@ -1,12 +1,12 @@
 package example.application.commandservices;
 
 import example.application.outboundservices.ExternalCatalogItemService;
-import example.domain.ItemOrder;
-import example.domain.OrderLine;
-import example.domain.Price;
+import example.domain.model.ItemOrder;
+import example.domain.model.OrderLine;
+import example.domain.model.Price;
 import example.infrastructure.jpa.ItemOrderRepository;
-import example.interfaces.events.OrderCreated;
-import example.interfaces.events.OrderItem;
+import example.domain.commands.OrderCreated;
+import example.domain.commands.OrderItem;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package example.interfaces.events;
+package example.domain.commands;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
